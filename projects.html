@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projets data science — ACP, clustering, séries temporelles, Power BI">
+    <title>Projets — Wael</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Projets</h1>
+        <p class="subtitle">
+            Travaux en analyse de données, machine learning et data visualisation
+        </p>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="projects.html">Projets</a>
+            <a href="https://github.com/wael0o" target="_blank">GitHub</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- PROJET 1 : ACP -->
+        <section class="project">
+            <h2>Analyse en Composantes Principales — Dataset Decathlon (R)</h2>
+
+            <h3>Objectif</h3>
+            <p>
+                Comprendre la structure des performances des athlètes du décathlon et identifier les dimensions principales expliquant la variabilité des résultats. L'enjeu : au-delà des scores bruts, qu'est-ce qui structure réellement la performance décathlonienne?
+            </p>
+
+            <h3>Méthodologie</h3>
+            <p>
+                Analyse en composantes principales réalisée sur variables centrées-réduites à l'aide du package <code>FactoMineR</code>. L'interprétation repose sur les valeurs propres, les contributions, les cos² et le cercle des corrélations.
+            </p>
+
+            <h3>Résultats clés</h3>
+            <ul>
+                <li>Les deux premières composantes expliquent environ 55% de la variance totale</li>
+                <li>Opposition marquée entre épreuves de vitesse/explosivité et épreuves techniques</li>
+                <li>Forte structuration des disciplines autour de groupes cohérents (sprint, sauts, lancers, endurance)</li>
+            </ul>
+
+            <h3>Visualisations</h3>
+            <div class="carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slides" id="carousel-acp-slides">
+                        <div class="carousel-slide">
+                            <img src="images/acp-1.png" alt="Cercle des corrélations et contributions">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/acp-2.png" alt="Éboulis des valeurs propres">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/acp-3.png" alt="Projection des individus (athlètes)">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" id="carousel-acp-prev">←</button>
+                        <button class="carousel-btn" id="carousel-acp-next">→</button>
+                    </div>
+                    <span class="carousel-counter"><span id="carousel-acp-current">1</span> / <span id="carousel-acp-total">3</span></span>
+                    <div class="carousel-dots" id="carousel-acp-dots"></div>
+                </div>
+            </div>
+
+            <h3>Conclusion analytique</h3>
+            <p>
+                L'ACP met en évidence une organisation claire des profils athlétiques. La performance globale ne repose pas sur une dimension unique, mais sur des compromis entre vitesse, puissance et endurance. Certains athlètes excellent dans les épreuves explosives tandis que d'autres dominent les épreuves d'endurance.
+            </p>
+        </section>
+
+        <!-- PROJET 2 : CLUSTERING -->
+        <section class="project">
+            <h2>Clustering Non Supervisé — Identification de types de mines</h2>
+
+            <h3>Objectif</h3>
+            <p>
+                Explorer la capacité de méthodes de clustering non supervisé à identifier des types de mines à partir de variables physiques et géométriques. Question centrale : existe-t-il une structure naturelle dans ces données, ou les classes sont-elles largement arbitraires?
+            </p>
+
+            <h3>Approche</h3>
+            <p>
+                Le projet débute par l'application de K-means comme méthode de référence, suivie d'une analyse critique de ses limites. Plusieurs méthodes avancées ont ensuite été testées : clustering hiérarchique, DBSCAN, Gaussian Mixture Models, ainsi que des approches hybrides (ACP, Mahalanobis, autoencodeur).
+            </p>
+
+            <h3>Résultats</h3>
+            <ul>
+                <li>Faible alignement entre clusters détectés et classes réelles (ARI bas)</li>
+                <li>Sensibilité marquée aux variables discrètes et à la normalisation</li>
+                <li>GMM offrant une segmentation visuellement plus cohérente que K-means classique</li>
+                <li>Pas de critère unique convergeant vers une solution claire</li>
+            </ul>
+
+            <h3>Visualisations</h3>
+            <div class="carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slides" id="carousel-clustering-slides">
+                        <div class="carousel-slide">
+                            <img src="images/clustering-1.png" alt="K-means et comparaison avec classes réelles">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/clustering-2.png" alt="DBSCAN et Gaussian Mixture Models">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/clustering-3.png" alt="Évaluation ARI et indices de qualité">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" id="carousel-clustering-prev">←</button>
+                        <button class="carousel-btn" id="carousel-clustering-next">→</button>
+                    </div>
+                    <span class="carousel-counter"><span id="carousel-clustering-current">1</span> / <span id="carousel-clustering-total">3</span></span>
+                    <div class="carousel-dots" id="carousel-clustering-dots"></div>
+                </div>
+            </div>
+
+            <h3>Conclusion analytique</h3>
+            <p>
+                L'absence de séparation nette suggère que les types de mines ne sont pas entièrement définis par les variables observées. Ce résultat, apparemment négatif, est informatif : il indique que des variables supplémentaires ou des informations contextuelles seraient nécessaires. Ce projet illustre pourquoi l'échec d'un algorithme non supervisé peut justifier une approche supervisée.
+            </p>
+        </section>
+
+        <!-- PROJET 3 : SÉRIES TEMPORELLES (EXCEL) -->
+        <section class="project">
+            <h2>Analyse de Séries Temporelles — Ventes mensuelles (Excel)</h2>
+
+            <h3>Objectif</h3>
+            <p>
+                Analyser l'évolution des ventes mensuelles d'un produit sur 3 ans (36 mois) et déterminer si une décomposition additive ou multiplicative explique le mieux la dynamique des données.
+            </p>
+
+            <h3>Méthodologie</h3>
+            <p>
+                Calcul de moyennes mobiles centrées pour isoler la tendance long terme. Extraction de la composante saisonnière via deux approches : modèle additif (Yt = Lt + St + Rt) et modèle multiplicatif (Yt = Lt × St × Rt). Ajustement linéaire de la tendance lissée. Comparaison des résidus pour identifier le modèle optimal.
+            </p>
+
+            <h3>Résultats clés</h3>
+            <ul>
+                <li>Données: 36 mois de ventes (min: 447k, max: 808k, moyenne: 614k unités)</li>
+                <li>Tendance déclinante sur la période avec baisse de 637k (début) à 499k (fin)</li>
+                <li>Saisonnalité multiplicative significative: pics d'été (coefficients > 1.14) et creux d'hiver (< 0.92)</li>
+                <li>Le modèle multiplicatif offre un meilleur ajustement avec résidus plus stables que l'approche additive</li>
+            </ul>
+
+            <h3>Visualisations</h3>
+            <div class="carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slides" id="carousel-excel-slides">
+                        <div class="carousel-slide">
+                            <img src="images/excel-1.png" alt="Série brute et tendance (moyennes mobiles)">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/excel-2.png" alt="Modèles additif vs multiplicatif">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/excel-3.png" alt="Saisonnalité et analyse des résidus">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" id="carousel-excel-prev">←</button>
+                        <button class="carousel-btn" id="carousel-excel-next">→</button>
+                    </div>
+                    <span class="carousel-counter"><span id="carousel-excel-current">1</span> / <span id="carousel-excel-total">3</span></span>
+                    <div class="carousel-dots" id="carousel-excel-dots"></div>
+                </div>
+            </div>
+
+            <h3>Conclusion analytique</h3>
+            <p>
+                Cette analyse démontre que le choix du modèle de décomposition affecte directement la qualité de la prédiction. Les ventes montrent une tendance baissière avec une saisonnalité multiplicative marquée : les variations saisonnières s'amplifient ou se réduisent proportionnellement au niveau moyen des ventes. Ce pattern est typique des produits saisonniers où les écarts absolus augmentent ou diminuent avec la tendance générale. Une bonne modélisation permet une prévention de demand plus fiable pour la planification.
+            </p>
+        </section>
+
+        <!-- PROJET 4 : BASE DE DONNÉES SQL RATP -->
+        <section class="project">
+            <h2>Conception de Base de Données — Réseau RATP (SQL)</h2>
+
+            <h3>Objectif</h3>
+            <p>
+                Concevoir et manipuler une base de données relationnelle simulant un réseau de transport urbain (RATP). L'enjeu : modéliser correctement les relations complexes entre stations, lignes, correspondances et trajets utilisateurs.
+            </p>
+
+            <h3>Compétences</h3>
+            <p>
+                Traiter, analyser, valoriser — conception logique, modèle relationnel, requêtes SQL avancées.
+            </p>
+
+            <h3>Approche</h3>
+            <p>
+                À partir d'un test visant à comprendre le fonctionnement du réseau RATP, nous avons analysé les données disponibles pour modéliser les entités et leurs relations dans un Modèle Conceptuel de Données (MCD). Ce MCD a ensuite été transformé en Modèle Logique de Données (MLD) pour créer une base relationnelle solide.
+            </p>
+
+            <h3>Travail réalisé</h3>
+            <ul>
+                <li>Conception d'un schéma relationnel (stations, lignes, arrêts, trajets)</li>
+                <li>Requêtes SQL complexes : jointures multi-tables, agrégations, sous-requêtes</li>
+                <li>Requêtes analytiques : trajets les plus fréquentés, correspondances, temps de trajet</li>
+                <li>Modélisation des entités et relations (MCD → MLD)</li>
+                <li>Respect des contraintes d'intégrité (clés primaires, clés étrangères)</li>
+            </ul>
+
+            <h3>Visualisations</h3>
+            <div class="carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slides" id="carousel-sql-slides">
+                        <div class="carousel-slide">
+                            <img src="images/sql-1.png" alt="Modèle conceptuel du réseau RATP">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/sql-2.png" alt="Requêtes SQL et modèle logique">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" id="carousel-sql-prev">←</button>
+                        <button class="carousel-btn" id="carousel-sql-next">→</button>
+                    </div>
+                    <span class="carousel-counter"><span id="carousel-sql-current">1</span> / <span id="carousel-sql-total">2</span></span>
+                    <div class="carousel-dots" id="carousel-sql-dots"></div>
+                </div>
+            </div>
+
+            <h3>Conclusion analytique</h3>
+            <p>
+                Ce projet montre l'importance d'une bonne modélisation de données dès le départ. Une structure mal pensée crée des anomalies et complique les requêtes. Une base bien conçue permet des analyses rapides et fiables, même sur de grands volumes. Une bonne base de données est le fondement de tout projet data solide.
+            </p>
+        </section>
+
+        <!-- PROJET 4 : POWER BI -->
+        <section class="project">
+            <h2>Data Visualisation & Décisionnel — Tableaux de bord Power BI (SNCF)</h2>
+
+            <h3>Objectif</h3>
+            <p>
+                Concevoir des tableaux de bord interactifs à partir de données SNCF afin de suivre des indicateurs clés et faciliter l'aide à la décision. L'enjeu : transformer des données brutes en insights actionnables pour les décideurs.
+            </p>
+
+            <h3>Travail réalisé</h3>
+            <ul>
+                <li>Nettoyage et structuration des données (20k+ enregistrements, gestion des valeurs manquantes)</li>
+                <li>Définition de KPI pertinents (trafic, chiffre d'affaires, répartition des trajets, taux de remplissage)</li>
+                <li>Création de dashboards interactifs avec filtres dynamiques et drill-down capabilities</li>
+                <li>Optimisation des visualisations pour une lecture rapide et des décisions informées</li>
+            </ul>
+
+            <h3>Dashboards</h3>
+            <div class="carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slides" id="carousel-powerbi-slides">
+                        <div class="carousel-slide">
+                            <img src="images/powerbi-1.png" alt="Dashboard principal — Vue synthétique des KPI">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/powerbi-2.png" alt="Analyse par région et corridor">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="images/powerbi-3.png" alt="Détail trafic et revenus">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <div class="carousel-nav">
+                        <button class="carousel-btn" id="carousel-powerbi-prev">←</button>
+                        <button class="carousel-btn" id="carousel-powerbi-next">→</button>
+                    </div>
+                    <span class="carousel-counter"><span id="carousel-powerbi-current">1</span> / <span id="carousel-powerbi-total">3</span></span>
+                    <div class="carousel-dots" id="carousel-powerbi-dots"></div>
+                </div>
+            </div>
+
+            <h3>Apport analytique</h3>
+            <p>
+                Les tableaux de bord offrent une vision synthétique et exploitable des données, permettant d'identifier rapidement des tendances, des anomalies et des axes d'analyse pertinents. La visualisation n'est pas cosmétique : elle structure la réflexion.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 — Wael · <a href="https://github.com/wael0o" target="_blank">GitHub</a></p>
+    </footer>
+
+    <script>
+        // Carrousel générique
+        function initCarousel(carouselId, totalSlides) {
+            let currentSlide = 0;
+            const slidesContainer = document.getElementById(`carousel-${carouselId}-slides`);
+            const prevBtn = document.getElementById(`carousel-${carouselId}-prev`);
+            const nextBtn = document.getElementById(`carousel-${carouselId}-next`);
+            const currentSpan = document.getElementById(`carousel-${carouselId}-current`);
+            const totalSpan = document.getElementById(`carousel-${carouselId}-total`);
+            const dotsContainer = document.getElementById(`carousel-${carouselId}-dots`);
+
+            // Créer les dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = `carousel-dot${i === 0 ? ' active' : ''}`;
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            function updateSlide() {
+                slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+                currentSpan.textContent = currentSlide + 1;
+                
+                // Update dots
+                document.querySelectorAll(`#carousel-${carouselId}-dots .carousel-dot`).forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentSlide);
+                });
+
+                // Update button states
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+            }
+
+            function goToSlide(n) {
+                currentSlide = Math.max(0, Math.min(n, totalSlides - 1));
+                updateSlide();
+            }
+
+            prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+            nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
+                if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+            });
+
+            updateSlide();
+        }
+
+        // Initialiser les carrousels
+        document.addEventListener('DOMContentLoaded', () => {
+            initCarousel('acp', 3);
+            initCarousel('clustering', 3);
+            initCarousel('excel', 3);
+            initCarousel('sql', 2);
+            initCarousel('powerbi', 3);
+        });
+    </script>
+
+</body>
+</html>
