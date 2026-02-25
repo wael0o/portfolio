@@ -75,58 +75,76 @@
             </p>
         </section>
 
-        <!-- PROJET 2 : CLUSTERING -->
-        <section class="project">
-            <h2>Clustering Non Supervisé — Identification de types de mines</h2>
+        <!-- PROJET 2 : STRUCTURE DES DONNÉES — CLUSTERING VS CLASSIFICATION -->
+<section class="project">
+    <h2>Structure des données — Clustering vs Classification supervisée</h2>
 
-            <h3>Objectif</h3>
-            <p>
-                Explorer la capacité de méthodes de clustering non supervisé à identifier des types de mines à partir de variables physiques et géométriques. Question centrale : existe-t-il une structure naturelle dans ces données, ou les classes sont-elles largement arbitraires?
-            </p>
+    <h3>Objectif</h3>
+    <p>
+        Étudier si des mesures physiques (V, H, S) permettent d’identifier naturellement 
+        différents types de mines. 
+        La question centrale : les classes forment-elles des groupes géométriques nets,
+        ou nécessitent-elles une approche supervisée ?
+    </p>
 
-            <h3>Approche</h3>
-            <p>
-                Le projet débute par l'application de K-means comme méthode de référence, suivie d'une analyse critique de ses limites. Plusieurs méthodes avancées ont ensuite été testées : clustering hiérarchique, DBSCAN, Gaussian Mixture Models, ainsi que des approches hybrides (ACP, Mahalanobis, autoencodeur).
-            </p>
+    <h3>Approche</h3>
+    <p>
+        Deux méthodes non supervisées ont été testées :
+        K-means et clustering hiérarchique (méthode de Ward).
+        Leur performance a été évaluée via l’Adjusted Rand Index (ARI),
+        afin de mesurer l’alignement avec les classes réelles.
+    </p>
 
-            <h3>Résultats</h3>
-            <ul>
-                <li>Faible alignement entre clusters détectés et classes réelles (ARI bas)</li>
-                <li>Sensibilité marquée aux variables discrètes et à la normalisation</li>
-                <li>GMM offrant une segmentation visuellement plus cohérente que K-means classique</li>
-                <li>Pas de critère unique convergeant vers une solution claire</li>
-            </ul>
+    <p>
+        En complément, un réseau de neurones dense supervisé a été entraîné
+        afin d’évaluer la séparabilité des classes via une frontière décisionnelle
+        non linéaire.
+    </p>
 
-            <h3>Visualisations</h3>
-            <div class="carousel">
-                <div class="carousel-container">
-                    <div class="carousel-slides" id="carousel-clustering-slides">
-                        <div class="carousel-slide">
-                            <img src="images/clustering-1.png" alt="K-means et comparaison avec classes réelles">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="images/clustering-2.png" alt="DBSCAN et Gaussian Mixture Models">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="images/clustering-3.png" alt="Évaluation ARI et indices de qualité">
-                        </div>
-                    </div>
+    <h3>Résultats</h3>
+    <ul>
+        <li>ARI faible pour K-means et Ward (≈ 0.01–0.04)</li>
+        <li>Absence de structure naturellement clusterisable</li>
+        <li>Réseau dense : accuracy ≈ 65% (hasard = 20%)</li>
+        <li>Deux classes nettement séparables, trois classes fortement entremêlées</li>
+    </ul>
+
+    <h3>Visualisations</h3>
+    <div class="carousel">
+        <div class="carousel-container">
+            <div class="carousel-slides" id="carousel-clustering-slides">
+                <div class="carousel-slide">
+                    <img src="images/clustering-1.png" alt="Projection PCA des classes réelles">
                 </div>
-                <div class="carousel-controls">
-                    <div class="carousel-nav">
-                        <button class="carousel-btn" id="carousel-clustering-prev">←</button>
-                        <button class="carousel-btn" id="carousel-clustering-next">→</button>
-                    </div>
-                    <span class="carousel-counter"><span id="carousel-clustering-current">1</span> / <span id="carousel-clustering-total">3</span></span>
-                    <div class="carousel-dots" id="carousel-clustering-dots"></div>
+                <div class="carousel-slide">
+                    <img src="images/clustering-2.png" alt="Projection PCA des clusters K-means">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/clustering-3.png" alt="Matrice de confusion du réseau dense">
                 </div>
             </div>
+        </div>
+        <div class="carousel-controls">
+            <div class="carousel-nav">
+                <button class="carousel-btn" id="carousel-clustering-prev">←</button>
+                <button class="carousel-btn" id="carousel-clustering-next">→</button>
+            </div>
+            <span class="carousel-counter">
+                <span id="carousel-clustering-current">1</span> / 
+                <span id="carousel-clustering-total">3</span>
+            </span>
+            <div class="carousel-dots" id="carousel-clustering-dots"></div>
+        </div>
+    </div>
 
-            <h3>Conclusion analytique</h3>
-            <p>
-                L'absence de séparation nette suggère que les types de mines ne sont pas entièrement définis par les variables observées. Ce résultat, apparemment négatif, est informatif : il indique que des variables supplémentaires ou des informations contextuelles seraient nécessaires. Ce projet illustre pourquoi l'échec d'un algorithme non supervisé peut justifier une approche supervisée.
-            </p>
-        </section>
+    <h3>Conclusion analytique</h3>
+    <p>
+        Les données ne présentent pas de structure naturellement segmentable.
+        Cependant, une séparation partielle est possible via un modèle supervisé.
+        Ce projet met en évidence l’importance du choix des méthodes et des métriques 
+        (ARI vs accuracy) selon la nature du problème.
+    </p>
+</section>
 
         <!-- PROJET 3 : SÉRIES TEMPORELLES (EXCEL) -->
         <section class="project">
